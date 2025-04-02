@@ -1,0 +1,5 @@
+builtin_interfaces/Time detection_time
+string class_object
+float32 conf_object
+sensor_msgs/Image image_object
+geometry_msgs/PoseStamped drone_pose
