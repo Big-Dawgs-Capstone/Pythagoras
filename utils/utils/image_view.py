@@ -7,7 +7,7 @@ from cv_bridge import CvBridge
 class ImageStreamView(Node):
 
     def __init__(self):
-        super().__init__(f'debug_boxes')
+        super().__init__(f'image_view_node')
 
         self.declare_parameter('topic', value='')
         topic : str = self.get_parameter('topic').get_parameter_value().string_value
@@ -19,7 +19,7 @@ class ImageStreamView(Node):
             exit(1)
 
         self.bridge = CvBridge()
-        self.create_subscription(Image, f'/yolo/dbg_image', self.listener_callback, qos_profile=10)
+        self.create_subscription(Image, topic, self.listener_callback, qos_profile=10)
 
     def listener_callback(self, msg):
         try:
@@ -32,8 +32,8 @@ class ImageStreamView(Node):
             self.get_logger().error(f"Failed to process image: {e}")
 
     def _check_valid_topic(self, topic : str):
-        if topic is '':
-                raise ValueError('No topic name provided...')
+        if topic == '':
+            raise ValueError('No topic name provided...')
         topics = self.get_topic_names_and_types()
         for name, types in topics:
             if name == topic and types[0] != 'sensor_msgs/msg/Image':

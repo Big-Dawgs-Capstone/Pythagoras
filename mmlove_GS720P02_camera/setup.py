@@ -23,8 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'fisheye_camera_publisher = mmlove_GS720P02_camera.fisheye_camera_publisher:main',
-            'fisheye_camera_view = mmlove_GS720P02_camera.fisheye_camera_view:main'
+            'fisheye_camera_publisher = mmlove_GS720P02_camera.fisheye_camera_publisher:main'
         ],
     },
 )

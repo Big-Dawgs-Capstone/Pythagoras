@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'surveillance'
+package_name = 'launch_scripts'
 
 setup(
     name=package_name,
@@ -14,14 +14,12 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='lebron',
-    maintainer_email='lebron@todo.todo',
+    maintainer_email='mohandeep@kapurs.ws',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'multi_camera_fuser_node = surveillance.multi_camera_fuser:main',
-            'snapshot_publisher_node = surveillance.snapshot_publisher:main'
         ],
     },
 )

@@ -1,7 +1,8 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image, CameraInfo
-from realsense2_camera_msgs.msg import RGBD  # why import not resolved here but pkg found 
+# why import not resolved here but pkg found
+from realsense2_camera_msgs.msg import RGBD  
 import numpy as np
 import open3d as o3d
 from cv_bridge import CvBridge
@@ -35,7 +36,6 @@ class PointCloudNode(Node):
         view_control.set_front([1, 0, 0])  # Front view vector (X-axis)
         view_control.set_up([0, 1, 0])     # Up vector (Y-axis)
         view_control.set_lookat([0, 0, 0]) # Look at the center of the scene
-
 
         # self.point_cloud_pub = self.create_publisher(
         # )

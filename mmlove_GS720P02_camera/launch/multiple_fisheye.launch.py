@@ -1,7 +1,3 @@
-#########################
-# Author: Mohandeep Kapur
-#########################
-
 from typing import List
 from launch import LaunchDescription
 from launch_ros.actions import Node, PushRosNamespace

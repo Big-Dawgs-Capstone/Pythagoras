@@ -20,7 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'image_view_node=utils.render_image_stream:main'
+            'image_view_node=utils.image_view:main',
+            'image_to_jpeg_node=utils.image_to_jpeg:main',
+            'goal_sub_node=utils.test_goal_sub:main'
         ],
     },
 )

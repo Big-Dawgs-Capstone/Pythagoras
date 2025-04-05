@@ -3,3 +3,5 @@ realsense-ros/
 __pycache__/
 px4_msgs/
 yolov8m.pt
+mavros
+mavlink
