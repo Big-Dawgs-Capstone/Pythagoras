@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'point_cloud_node = reconstruction.point_cloud_node:main'
+            'point_cloud_node = reconstruction.point_cloud_node:main',
+            'point_cloud_aggregator=reconstruction.point_cloud_aggregator:main'
         ],
     },
 )

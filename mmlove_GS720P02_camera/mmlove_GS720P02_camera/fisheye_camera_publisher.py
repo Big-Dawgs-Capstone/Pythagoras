@@ -10,6 +10,7 @@ from cv2.typing import MatLike
 import cv2
 from std_msgs.msg import Header
 from rclpy.clock import Clock
+import subprocess
 
 class FisheyeCameraPublisher(Node):
     """
@@ -24,10 +25,10 @@ class FisheyeCameraPublisher(Node):
 
         # extract device number argument
         self.declare_parameter('dev_num', value=-1)
-        dev_num = self.get_parameter('dev_num').get_parameter_value().integer_value
+        self.dev_num = self.get_parameter('dev_num').get_parameter_value().integer_value
        
         # check whether device number is valid
-        if dev_num < 0:
+        if self.dev_num < 0:
             print('Invalid/No device number provided...')
             exit(1)
 
@@ -37,7 +38,7 @@ class FisheyeCameraPublisher(Node):
         # set callback rate 
         self.timer = self.create_timer(.03, self.publish_frame)
 
-        self.init_video_capture_cpu(dev_num)
+        self.init_video_capture_cpu(self.dev_num)
 
         if not self.cap.isOpened():
             self.get_logger().error('Failed to open camera...')
@@ -80,6 +81,8 @@ class FisheyeCameraPublisher(Node):
         # fps set through cv is ok now
         self.cap.set(cv2.CAP_PROP_FPS, 8)
 
+        #self.set_exposure(device=f"/dev/video{self.dev_num}", exposure=20)
+
         # check camera params - changing state of field doesn't mean hardware
         fps = self.cap.get(cv2.CAP_PROP_FPS)
         width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
@@ -91,6 +94,7 @@ class FisheyeCameraPublisher(Node):
         print("FOURCC format in use:", fourcc_str)
         
 
+    # not working as of right now - opencv not built with gstreamer backend support
     def init_video_capture_gpu(self, dev_num : int):
         gst_str = (
             f'v4l2src device=/dev/video{dev_num} ! '
@@ -103,6 +107,23 @@ class FisheyeCameraPublisher(Node):
             f'appsink'
         )
         self.cap = cv2.VideoCapture(gst_str, cv2.CAP_GSTREAMER)
+    
+    # def set_focus(self, focus_value):
+    #     FOCUS_PROPERTY = 28
+    #     if not self.cap.set(FOCUS_PROPERTY, focus_value):
+    #         self.get_logger().error("Failed to set focus. Manual/auto focus might be locked.")
+    #     else:
+    #         self.get_logger().info(f"Focus set to {focus_value}")
+    
+    def set_exposure(self, dev_path, exposure=156):
+        try:
+            subprocess.run(["v4l2-ctl", "-d", dev_path, "-c", "auto_exposure=1"], check=True)
+            subprocess.run(["v4l2-ctl", "-d", dev_path, "-c", f"exposure_time_absolute={exposure}"], check=True)
+            self.get_logger().info(f"Exposure set to {exposure}")
+        except subprocess.CalledProcessError as e:
+            self.get_logger().error(f"Failed to set exposure: {e}")
+
+
 
     def destroy_node(self):
         self.cap.release()

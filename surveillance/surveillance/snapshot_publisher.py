@@ -81,7 +81,7 @@ class SnapshotPublisher(Node):
 
         ret, buffer = cv2.imencode(".jpg", cv_image)
         if not ret:
-            self.get_logger().error("Object image compression to jpeg failed..")
+            self.get_logger().error("Object image compression to jpeg failed...")
             return
 
         comp_img_msg = CompressedImage()
@@ -94,7 +94,7 @@ class SnapshotPublisher(Node):
     def produce_snapshots(
         self, pose: PoseStamped, detections: DetectionArray
     ) -> SnapshotArray:
-
+        
         obj_img = self.cache_fused_image.getLast()
 
         snap_array: SnapshotArray = SnapshotArray()
