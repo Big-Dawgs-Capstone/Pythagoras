@@ -1,1 +1,0 @@
-/home/lebron/ros2_ws/src/build/body_pose_node/launch/body_pose_launch.py

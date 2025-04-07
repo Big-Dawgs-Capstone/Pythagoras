@@ -1,2 +1,0 @@
-[console_scripts]
-body_pose_transformer = body_pose_node.body_pose_transformer:main
