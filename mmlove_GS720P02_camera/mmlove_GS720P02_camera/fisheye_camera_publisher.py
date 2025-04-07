@@ -81,7 +81,7 @@ class FisheyeCameraPublisher(Node):
         # fps set through cv is ok now
         self.cap.set(cv2.CAP_PROP_FPS, 8)
 
-        #self.set_exposure(device=f"/dev/video{self.dev_num}", exposure=20)
+        self.set_exposure(dev_path=f"/dev/video{self.dev_num}", exposure=300)
 
         # check camera params - changing state of field doesn't mean hardware
         fps = self.cap.get(cv2.CAP_PROP_FPS)
@@ -117,8 +117,8 @@ class FisheyeCameraPublisher(Node):
     
     def set_exposure(self, dev_path, exposure=156):
         try:
-            subprocess.run(["v4l2-ctl", "-d", dev_path, "-c", "auto_exposure=1"], check=True)
-            subprocess.run(["v4l2-ctl", "-d", dev_path, "-c", f"exposure_time_absolute={exposure}"], check=True)
+            subprocess.run(["v4l2-ctl", "-d", dev_path, "-c", "auto_exposure=3"], check=True)
+            #subprocess.run(["v4l2-ctl", "-d", dev_path, "-c", f"exposure_time_absolute={exposure}"], check=True)
             self.get_logger().info(f"Exposure set to {exposure}")
         except subprocess.CalledProcessError as e:
             self.get_logger().error(f"Failed to set exposure: {e}")

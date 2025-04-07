@@ -1,0 +1,17 @@
+[2.255s] Invoking command in '/home/lebron/ros2_ws/src/build/body_pose_node': PYTHONPATH=/home/lebron/ros2_ws/src/build/body_pose_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/lebron/ros2_ws/src/install/body_pose_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/lebron/ros2_ws/src/build/body_pose_node/build --no-deps symlink_data
+[3.116s] running develop
+[3.623s] running egg_info
+[3.659s] writing body_pose_node.egg-info/PKG-INFO
+[3.660s] writing dependency_links to body_pose_node.egg-info/dependency_links.txt
+[3.661s] writing entry points to body_pose_node.egg-info/entry_points.txt
+[3.662s] writing requirements to body_pose_node.egg-info/requires.txt
+[3.662s] writing top-level names to body_pose_node.egg-info/top_level.txt
+[3.741s] reading manifest file 'body_pose_node.egg-info/SOURCES.txt'
+[3.742s] writing manifest file 'body_pose_node.egg-info/SOURCES.txt'
+[3.881s] running build_ext
+[3.881s] Creating /home/lebron/ros2_ws/src/install/body_pose_node/lib/python3.10/site-packages/body-pose-node.egg-link (link to .)
+[3.884s] Installing body_pose_transformer script to /home/lebron/ros2_ws/src/install/body_pose_node/lib/body_pose_node
+[3.885s] 
+[3.886s] Installed /home/lebron/ros2_ws/src/build/body_pose_node
+[3.886s] running symlink_data
+[4.006s] Invoked command in '/home/lebron/ros2_ws/src/build/body_pose_node' returned '0': PYTHONPATH=/home/lebron/ros2_ws/src/build/body_pose_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/lebron/ros2_ws/src/install/body_pose_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/lebron/ros2_ws/src/build/body_pose_node/build --no-deps symlink_data

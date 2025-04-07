@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+body_pose_node/__init__.py
+body_pose_node/body_pose_transformer.py
+body_pose_node.egg-info/PKG-INFO
+body_pose_node.egg-info/SOURCES.txt
+body_pose_node.egg-info/dependency_links.txt
+body_pose_node.egg-info/entry_points.txt
+body_pose_node.egg-info/requires.txt
+body_pose_node.egg-info/top_level.txt
+body_pose_node.egg-info/zip-safe
+launch/body_pose_launch.py

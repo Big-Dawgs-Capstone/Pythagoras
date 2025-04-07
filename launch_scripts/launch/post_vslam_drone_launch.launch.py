@@ -24,7 +24,7 @@ def launch_image_to_jpeg_nodes(context, *args, **kwargs):
         cmd=[
             "ros2", "run", "utils", "image_to_jpeg_node",
             "--ros-args", "-p",
-            f"topic:={fused_topic}"
+            f"topic:={fused_topic}", "-r", "__node:=jpeggy"
         ],
         output="screen",
     )
@@ -33,7 +33,7 @@ def launch_image_to_jpeg_nodes(context, *args, **kwargs):
         cmd=[
             "ros2", "run", "utils", "image_to_jpeg_node",
             "--ros-args", "-p",
-            f"topic:={yolo_dbg_topic}"
+            f"topic:={yolo_dbg_topic}", "-r", "__node:=jpeggyYOLO"
         ],
         output="screen",
     )
@@ -111,7 +111,7 @@ def generate_launch_description():
         yolo_launch,
         snapshot_maker,
         OpaqueFunction(function=launch_image_to_jpeg_nodes),
-        rosbridge_server
+        #rosbridge_server
     ])
 
 

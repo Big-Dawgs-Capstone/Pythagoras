@@ -6,6 +6,7 @@ from cv_bridge import CvBridge
 import numpy as np
 import cv2
 from rclpy.qos import QoSProfile
+from rclpy.qos import QoSProfile, QoSReliabilityPolicy
 
 
 class MultiCameraFuser(Node):
@@ -23,7 +24,19 @@ class MultiCameraFuser(Node):
             self, Image, "/fisheye/camera_1/image_raw", qos_profile=10
         )
         # '/camera/camera/color/image_raw'
-        self.realsense_sub = Subscriber(self, Image, "/left/image_rect", qos_profile=10)
+        #/camera0/color/image_raw
+        #/left/image_rect <-- vslam launched realsense topic
+
+
+        #/camera0/infra1/image_rect_raw <- nvblox works
+        # /camera0/color/image_raw <- nvblox woorks
+
+        qos_profile = QoSProfile(
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            depth=10
+        )
+
+        self.realsense_sub = Subscriber(self, Image, "/left/image_rect", qos_profile=qos_profile)
 
         self.fused_img_pub = self.create_publisher(
             Image, "/fused/image_raw", qos_profile=10
